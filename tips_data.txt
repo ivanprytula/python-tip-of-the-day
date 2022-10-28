@@ -1,0 +1,4 @@
+One virtual environment per project
+Structure your code and projects
+Utilize the capabilities of your editor
+Use existing solutions

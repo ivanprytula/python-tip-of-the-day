@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "Python tip of the day"
+version = "0.1.0"
+description = "Collection of tips/hints for writing effective and readable Python code."
+authors = ["Ivan Prytula ivanprytula87@gmail.com"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+brython = "^3.11.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.9.2"
+black = "^22.10.0"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
