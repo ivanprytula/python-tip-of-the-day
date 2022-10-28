@@ -5,7 +5,7 @@ from copy import deepcopy
 from collections import namedtuple, deque
 from typing import NoReturn, Any
 from itertools import cycle
-from browser import ajax, document, bind, DOMNode, timer
+from browser import ajax, document, bind, DOMNode
 
 TIP_SECTION_ID = "tipzone"
 TIMEOUT = 4
@@ -13,7 +13,6 @@ NUM_TIPS_HEADERS = 4
 
 tip_zone = document[TIP_SECTION_ID]
 
-# last_showed_tip_id = None
 class Node:
     def __init__(self, data: Any):
         self.data = data
