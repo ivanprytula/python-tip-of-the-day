@@ -1,13 +1,8 @@
-.pagination button {
-	color: #463737;
-	font-weight: 700;
-	padding: 8px 16px;
-	transition-property: background-color;
-	transition-duration: .3s;
+.tip-main-info {
+	height: 150px;
 }
 
-.pagination button:hover {
-	background-color: #4CAF50;
-	color: white;
-	transition-duration: .3s;
+.tip-racionale ul {
+	display: inline-block;
+	text-align: initial;
 }
