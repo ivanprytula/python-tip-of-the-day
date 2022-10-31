@@ -1,5 +1,5 @@
-Tip Text	Rationale	Tags	Unique Identifier	
-One virtual environment per project	Isolation; Different projects have different dependency versions; You don't want to mess up the system Python	best practices	BP	
+Tip	Rationale	Tags	Unique Identifier	
+One virtual environment per project	Isolation;Different projects have different dependency versions; You don't want to mess up the system Python	best practices	BP	
 Structure your code and projects	Package and module structure gives an overview about the project; Modular design == better re-usability	best practice	BP	
 Utilize the capabilities of your editor	Efficient and fluent development; There's plenty of tools to make your daily programming easier, why would you not use them	best practice	BP	
 Use existing solutions	Python Standard Library is extensive - and stable!; There are 370k+ packages in PyPI; Someone has most likely solved the problem you're trying to solve; Spend 5 minutes doing a web search before starting to solve a new problem	best practices	BP	

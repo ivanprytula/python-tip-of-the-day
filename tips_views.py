@@ -1,23 +1,23 @@
 # import csv
 import time
 import random
-from copy import deepcopy
-from collections import namedtuple, deque
+from collections import namedtuple
 from typing import NoReturn, Any
-from itertools import cycle
-from browser import ajax, document, bind, DOMNode
+from browser import ajax, document, bind, DOMNode, html
 
-TIP_SECTION_ID = "tipzone"
+TIP_SECTION_ID = "tip-text"
 TIMEOUT = 4
 NUM_TIPS_HEADERS = 4
 
+tip_heading = document.select("H1.tip-heading")[0]
 tip_zone = document[TIP_SECTION_ID]
+tip_racionale = document.select(".tip-racionale")[0]
+
 
 class Node:
     def __init__(self, data: Any):
         self.data = data
         self.next = None
-        self.previous = None
 
 
 class DoublyLinkedCircularList:
@@ -88,8 +88,8 @@ def divide_chunks(data: list, start_index: int, n: int):
         yield data[i : i + n]
 
 
-def set_text_on_page(element: DOMNode, text_to_show: str) -> NoReturn:
-    element.text = text_to_show
+def set_text_on_page(dom_element: DOMNode, text_to_show: str) -> NoReturn:
+    dom_element.text = text_to_show
 
 
 def get_parsed_tips(req: ajax) -> DoublyLinkedCircularList:
@@ -113,7 +113,13 @@ def get_parsed_tips(req: ajax) -> DoublyLinkedCircularList:
     return DoublyLinkedCircularList(tips)
 
 
-def get_random_tip(req: ajax) -> NoReturn:
+def display_iterable_data(dom_element: DOMNode, tip_obj: Node) -> NoReturn:
+    list_items = [phrase.strip() for phrase in tip_obj.data[1].split(";")]
+    dom_element.clear()
+    dom_element <= html.UL(html.LI(item) for item in list_items)
+
+
+def show_random_tip(req: ajax) -> NoReturn:
     if req.status == 200 or req.status == 0:
         global tips
         global last_showed_tip
@@ -123,7 +129,14 @@ def get_random_tip(req: ajax) -> NoReturn:
 
         # Set value for later usage with prev/next buttons
         last_showed_tip = any_tip
+
+        tip_heading_text = any_tip.data._fields[0].capitalize()
+        set_text_on_page(dom_element=tip_heading, text_to_show=tip_heading_text)
+
+        # We access namedtuple fields by index or attr
         set_text_on_page(tip_zone, any_tip.data[0])
+
+        display_iterable_data(tip_racionale, any_tip)
     else:
         set_text_on_page(tip_zone, f"ERROR: {req.text}")
 
@@ -134,25 +147,31 @@ def err_msg():
 
 def get_tips_from_file(url: str):
     req = ajax.Ajax()
-    req.bind("complete", get_random_tip)
+    req.bind("complete", show_random_tip)
     req.set_timeout(TIMEOUT, err_msg)
     req.open("GET", url, True)
     req.send()
-
-
-get_tips_from_file(f"tips_data.tsv{fake_qs()}")
 
 
 @bind("button[data-direction]", "click")
 def loop_over_tips(event):
     global last_showed_tip
     current_tip = last_showed_tip
+
+    tip_text = ...  # smth other than always None ;)
+
     match event.target.getAttribute("data-direction"):
         case "previous":
             last_showed_tip = current_tip.previous
-            set_text_on_page(tip_zone, current_tip.previous.data[0])
+
+            tip_text = current_tip.previous.data[0]
         case "next":
             last_showed_tip = current_tip.next
-            set_text_on_page(tip_zone, current_tip.next.data[0])
+            tip_text = current_tip.next.data[0]
         case _:
-            set_text_on_page(tip_zone, "I dunno where to go.")
+            tip_text = "I know that you just manually changed attr value ;)."
+    set_text_on_page(dom_element=tip_zone, text_to_show=tip_text)
+    display_iterable_data(tip_racionale, last_showed_tip)
+
+
+get_tips_from_file(f"tips_data.tsv{fake_qs()}")
