@@ -113,9 +113,12 @@ def get_parsed_tips(req: ajax) -> DoublyLinkedCircularList:
 
 
 def display_iterable_data(dom_element: DOMNode, tip_obj: Node) -> NoReturn:
-    list_items = [phrase.strip() for phrase in tip_obj.data[1].split(";")]
-    dom_element.clear()
-    dom_element <= html.UL(html.LI(item) for item in list_items)
+    if tip_obj.data[1] == "None":
+        dom_element.clear()
+    else:
+        list_items = [phrase.strip() for phrase in tip_obj.data[1].split(";")]
+        dom_element.clear()
+        dom_element <= html.UL(html.LI(item) for item in list_items)
 
 
 def show_random_tip(req: ajax) -> NoReturn:
