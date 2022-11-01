@@ -1,6 +1,7 @@
-Tip	Rationale	Tags	Unique Identifier	
-One virtual environment per project	Isolation;Different projects have different dependency versions; You don't want to mess up the system Python	best practices	BP	
-Structure your code and projects	Package and module structure gives an overview about the project; Modular design == better re-usability	best practice	BP	
-Utilize the capabilities of your editor	Efficient and fluent development; There's plenty of tools to make your daily programming easier, why would you not use them	best practice	BP	
-Use existing solutions	Python Standard Library is extensive - and stable!; There are 370k+ packages in PyPI; Someone has most likely solved the problem you're trying to solve; Spend 5 minutes doing a web search before starting to solve a new problem	best practices	BP	
-Learn how to debug efficiently	You won't write completely stable code anyway - impossible looking conditions will occur; When something is not working as expected, there are plenty of tools out there to help you figure out what's going on	best practices	DEBUG	
+Tip	Rationale	Tags	
+One virtual environment per project	Isolation;Different projects have different dependency versions; You don't want to mess up the system Python	best practices	
+Structure your code and projects	Package and module structure gives an overview about the project; Modular design == better re-usability	best practice	
+Utilize the capabilities of your editor	Efficient and fluent development; There's plenty of tools to make your daily programming easier, why would you not use them	best practice	
+Use existing solutions	Python Standard Library is extensive - and stable!; There are 370k+ packages in PyPI; Someone has most likely solved the problem you're trying to solve; Spend 5 minutes doing a web search before starting to solve a new problem	best practices	
+Learn how to debug efficiently	You won't write completely stable code anyway - impossible looking conditions will occur; When something is not working as expected, there are plenty of tools out there to help you figure out what's going on	best practices	
+Test your code	No surprises (especially in production); Make sure that everything works as expected; Make sure that old stuff works as expected after introducing new features (regression); Tests give you confidence while refactoring; Good tests demonstrate the use cases of application, i.e. they also document the implementation	best practices	

@@ -6,7 +6,7 @@ from browser import ajax, document, bind, DOMNode, html
 
 TIP_SECTION_ID = "tip-text"
 TIMEOUT = 4
-NUM_TIPS_HEADERS = 4
+NUM_TIPS_HEADERS = 3
 
 tip_heading = document.select("H1.tip-heading")[0]
 tip_zone = document[TIP_SECTION_ID]
@@ -103,7 +103,7 @@ def get_parsed_tips(req: ajax) -> DoublyLinkedCircularList:
         tips_headers,
         rename=True,
         module=__name__,
-        defaults=["import __hello__", "import this", "...", "Guido van Rossum"],
+        defaults=["import __hello__", "import this", "..."],
     )
     tips = [
         Tip._make(tip_fields)
